@@ -4,22 +4,23 @@ import FormatMovFin from '@/utils/FormatMovFin2';
 import { saveAs } from 'file-saver';
 
 export default function FormInsert() {
+  
+  const [rubrica, setRubrica] = useState('')
+  const [mesPagto, setMesPagto] = useState('')
+  const [anoPagto, setAnoPagto] = useState('')
+  
   const [userData, setUserData] = useState({
-    codUorg: '',
+    codUorg: '26240',
     siape: '',
     dv: '',
-    comando: '',
-    tipo: '',
+    comando: '5',
+    tipo: '1',
     rubrica: '',
     sequencia: '',
     valor: '',
     prazo: '',  
     
   });
-  
-  const [rubrica, setRubrica] = useState('')
-  const [mesPagto, setMesPagto] = useState('')
-  const [anoPagto, setAnoPagto] = useState('')
 
   const [userList, setUserList] = useState([]);
 
@@ -28,11 +29,11 @@ export default function FormInsert() {
     const newUser = { ...userData };
     setUserList([...userList, newUser]);
     setUserData({
-      codUorg: '',
+      codUorg: '26240',
       siape: '',
       dv: '',
-      comando: '',
-      tipo: '',
+      comando: '5',
+      tipo: '1',
       rubrica: '',
       sequencia: '',
       valor: '',
@@ -49,6 +50,14 @@ export default function FormInsert() {
     }
   };
 
+  const handleSelecionarOpcao = (e) => {
+   const { name, value } = e.target;
+   setUserData((prevData) => ({
+    ...prevData,
+    [name]: value,
+   }))    
+  };
+  
   const dadosFormat = FormatMovFin(userList, rubrica, mesPagto, anoPagto);
 
   const handleDownloadClick = () => {
@@ -98,11 +107,11 @@ export default function FormInsert() {
         
         <form onSubmit={handleSubmit}>
          
-          <div className="flex flex-row mt-5 items-start justify-start">
+          <div className="flex flex-row mt-5 items-start justify-center">
          
             <input 
-              className="w-28 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
-              required
+              className="w-20 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
+              disabled
               type="number"
               name="codUorg"
               placeholder="Codigo Uorg"
@@ -131,28 +140,31 @@ export default function FormInsert() {
               onChange={(e) => handleNumberInputChange('dv', e.target.value, 0, 9)} 
             />
          
-            <input 
+            <select 
               className="w-28 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
-              required
-              type="number"
-              name="comando"
-              placeholder="Comando" 
+              name="comando" 
               value={userData.comando} 
-              onChange={(e) => handleNumberInputChange('comando', e.target.value, 0, 9)} 
-              />
-         
-            <input 
-              className="w-10 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
-              required
-              type="number" 
-              name="tipo"
-              placeholder="Tipo"
+              onChange={handleSelecionarOpcao}
+            >
+              <option value="4">Inclusão</option>
+              <option value="3">Exclusão</option>
+              <option value="5">Alteração</option>
+           
+            </select>
+
+            <select 
+              className="w-28 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
+              name="tipo" 
               value={userData.tipo} 
-              onChange={(e) => handleNumberInputChange('tipo', e.target.value, 0, 9)} 
-            />
+              onChange={handleSelecionarOpcao}
+            >
+              <option value="1">Redinmento</option>
+              <option value="2">Desconto</option>
+           
+            </select>
           
             <input 
-              className="w-40 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
+              className="w-16 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
               required
               type="text" 
               name="rubrica"
@@ -165,7 +177,7 @@ export default function FormInsert() {
           <div className="flex flex-row mt-5">
             
             <input 
-              className="w-28 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
+              className="w-20 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
               required
               type="number"
               name="sequencia"
