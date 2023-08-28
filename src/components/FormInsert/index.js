@@ -63,7 +63,7 @@ export default function FormInsert() {
   const handleDownloadClick = () => {
     const text = dadosFormat
     const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-    saveAs(blob, 'arquivo.txt');
+    saveAs(blob, `MOV-FIN-${mesPagto}${anoPagto}`);
   }
   
 
