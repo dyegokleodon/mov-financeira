@@ -19,6 +19,8 @@ export default function FormInsert() {
     sequencia: '',
     valor: '',
     prazo: '',  
+    mesRub: '',  
+    anoRub: '',  
     
   });
 
@@ -38,9 +40,10 @@ export default function FormInsert() {
       sequencia: '',
       valor: '',
       prazo: '', 
+      mesRub: '',  
+      anoRub: '', 
     });
   };
-
   const handleNumberInputChange = (name, value, min, max) => {
     if (value === '' || (parseInt(value, 10) >= min && parseInt(value, 10) <= max)) {
       setUserData((prevData) => ({
@@ -172,6 +175,8 @@ export default function FormInsert() {
               value={userData.rubrica} 
               onChange={(e) => handleNumberInputChange('rubrica', e.target.value, 0, 99999)} 
             />
+
+            
           </div>
 
           <div className="flex flex-row mt-5">
@@ -184,7 +189,7 @@ export default function FormInsert() {
               placeholder="Sequencia" 
               value={userData.sequencia} 
               onChange={(e) => handleNumberInputChange('sequencia', e.target.value, 0, 9)} 
-              />
+            />
          
             <input 
               className="w-28 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
@@ -206,13 +211,41 @@ export default function FormInsert() {
               onChange={(e) => handleNumberInputChange('prazo', e.target.value, 0, 999)} 
 
             />
+            
+            <input 
+              className="w-10 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
+              type="text" 
+              name="mesRub"
+              alt='Se não for retroativo deixar em branco'
+              placeholder="mês"
+              value={userData.mesRub} 
+              onChange={(e) => handleNumberInputChange('mesRub', e.target.value, 0, 99)} 
+
+            />
+            <input 
+              className="w-16 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
+              type="text" 
+              name="anoRub"
+              placeholder="Ano"
+              alt='Se não for retroativo deixar em branco'
+              value={userData.anoRub} 
+              onChange={(e) => handleNumberInputChange('anoRub', e.target.value, 0, 9999)} 
+
+            />
             <button
-              className="flex w-80 h-8 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" 
+              className="flex w-48 h-8 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" 
               type="submit"
             >
                 Adicionar Usuário
             </button>    
-          </div>   
+          </div> 
+          <div className="text-white w-3/4">
+            <p>
+              Preencher os campos <strong className="text-indigo-400">Mês e Ano </strong> 
+              Somente se for retroativo. 
+            </p>
+            <p>Caso Contrário deixar em branco</p>
+          </div>  
         </form>
         
       </div>
@@ -244,6 +277,7 @@ export default function FormInsert() {
             <th>Sequencia</th>
             <th>Valor</th>
             <th>Prazo</th>
+            <th>Retroativo</th>
            </tr>
           </thead>
           <tbody className="w-full h-full items-center justify-center">
@@ -258,6 +292,7 @@ export default function FormInsert() {
                   <td className="text-center font-medium text-gray-900 dark:text-white">{user.sequencia}</td>
                   <td className="text-center font-medium text-gray-900 dark:text-white">{user.valor}</td>
                   <td className="text-center font-medium text-gray-900 dark:text-white">{user.prazo}</td>
+                  <td className="text-center font-medium text-gray-900 dark:text-white">{user.mesRub}/{user.anoRub}</td>
               </tr>
             ))}
           </tbody>
