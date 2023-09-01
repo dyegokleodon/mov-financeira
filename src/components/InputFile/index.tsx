@@ -4,7 +4,11 @@ import { UploadIcon } from "@/icons/UploadIcon";
 import { useCallback, useState } from "react"
 import { useDropzone, DropzoneState } from "react-dropzone";
 
+
+
 import DataGrid from '../../components/DataGrid';
+
+
 
 interface InputProps {
   dropzone: DropzoneState;
@@ -60,6 +64,20 @@ export const InputFile = () => {
     
     return (
       <div className="flex flex-col w-full h-full items-center justify-center">
+        <div className="w-1/2 text-center items-center justify-center mb-8 text-indigo-100">
+          <p>
+            <a 
+              
+              href="/modelo-moviFin.csv"
+              download="mov-fin.csv"
+            > 
+              <strong className="text-indigo-400 hover:text-indigo-500 text-lg">clique aqui</strong> &nbsp;  
+            </a>
+              para baixar o  modelo de arquivo CSV para movimentação financeira
+          </p>
+        </div>
+        
+
         <input 
           className="w-1/4 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center text-lg" 
           type="number"

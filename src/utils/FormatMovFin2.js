@@ -28,7 +28,7 @@ export default function FormatMovFin(csvData, rubrica, mesPagto, anoPagto) {
     let anoRubrica = ('    ');
     let mesRubrica = ('  ');           
     
-    if(item.mesRub.length > 0) {
+    if(item.mesRub !== "") {
       mesRubrica = ('0000' + item.mesRub).slice(-2); 
     }
     if(item.anoRub.length > 0) {
@@ -39,7 +39,6 @@ export default function FormatMovFin(csvData, rubrica, mesPagto, anoPagto) {
     const rubricaFormated = ('00000' + item.rubrica).slice(-5);           
     const siapeFormated = ('0000000' + item.siape).slice(-7);           
     
-    console.log(anoRubrica)
     const dadoConc = `1${uorgFormated}${siapeFormated}${item.dv}${item.comando}${item.tipo}${rubricaFormated}${item.sequencia}${valor}${prazo}${matriculaOrigem}${nomeBeneficiario}${rubricaCalculo1}${rubricaCalculo2}${rubricaCalculo3}${filler4}${AssuntoCalculoParam}${fracaoNumerador}${fracaoDenominador}${percentual}${classificacaoCargoEmprego}${nivelSalarialCargoEmprego}${filller6}${rubricaBrancos1}${rubricaBrancos2}${pontuacao}${minuto}${mesRubrica}${anoRubrica}${filler5}${cpfCnpj}${codBanco}${codAgencia}${numContaCorrente}${filler4}`
     return dadoConc;
 

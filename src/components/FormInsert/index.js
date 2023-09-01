@@ -69,7 +69,6 @@ export default function FormInsert() {
     saveAs(blob, `MOV-FIN-${mesPagto}${anoPagto}`);
   }
   
-
   return (
     <div className="flex flex-col w-full h-full ">
 
@@ -176,8 +175,9 @@ export default function FormInsert() {
               onChange={(e) => handleNumberInputChange('rubrica', e.target.value, 0, 99999)} 
             />
 
-            
           </div>
+
+          
 
           <div className="flex flex-row mt-5">
             
@@ -189,7 +189,7 @@ export default function FormInsert() {
               placeholder="Sequencia" 
               value={userData.sequencia} 
               onChange={(e) => handleNumberInputChange('sequencia', e.target.value, 0, 9)} 
-            />
+            />   
          
             <input 
               className="w-28 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
@@ -212,26 +212,40 @@ export default function FormInsert() {
 
             />
             
-            <input 
-              className="w-10 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
-              type="text" 
-              name="mesRub"
-              alt='Se não for retroativo deixar em branco'
-              placeholder="mês"
+            <select 
+              className="w-12 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
+              name="mesRub" 
               value={userData.mesRub} 
-              onChange={(e) => handleNumberInputChange('mesRub', e.target.value, 0, 99)} 
+              onChange={handleSelecionarOpcao}
+            >
+              <option value="">S/R</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+           
+            </select>
 
-            />
-            <input 
-              className="w-16 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
-              type="text" 
-              name="anoRub"
-              placeholder="Ano"
-              alt='Se não for retroativo deixar em branco'
-              value={userData.anoRub} 
-              onChange={(e) => handleNumberInputChange('anoRub', e.target.value, 0, 9999)} 
+            { userData.mesRub &&
+              <input 
+                className="w-16 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
+                type="text" 
+                name="anoRub"
+                placeholder="Ano"
+                alt='Se não for retroativo deixar em branco'
+                value={userData.anoRub} 
+                onChange={(e) => handleNumberInputChange('anoRub', e.target.value, 0, 9999)} 
 
-            />
+              />
+            }         
             <button
               className="flex w-48 h-8 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" 
               type="submit"
@@ -239,12 +253,12 @@ export default function FormInsert() {
                 Adicionar Usuário
             </button>    
           </div> 
-          <div className="text-white w-3/4">
+          <div className="text-white w-3/3 mb-3">
             <p>
-              Preencher os campos <strong className="text-indigo-400">Mês e Ano </strong> 
-              Somente se for retroativo. 
+              Preencher o campo <strong className="text-indigo-400">S/R </strong> 
+              Somente se houver mês e ano retroativo. 
             </p>
-            <p>Caso Contrário deixar em branco</p>
+            <p>Caso Contrário, não alterar</p>
           </div>  
         </form>
         
