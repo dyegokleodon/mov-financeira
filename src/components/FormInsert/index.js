@@ -21,7 +21,7 @@ export default function FormInsert() {
     prazo: '',  
     mesRub: '',  
     anoRub: '',  
-    
+    assuntoCalculo: '',
   });
 
   const [userList, setUserList] = useState([]);
@@ -41,7 +41,8 @@ export default function FormInsert() {
       valor: '',
       prazo: '', 
       mesRub: '',  
-      anoRub: '', 
+      anoRub: '',
+      assuntoCalculo: '', 
     });
   };
   const handleNumberInputChange = (name, value, min, max) => {
@@ -245,12 +246,21 @@ export default function FormInsert() {
                 onChange={(e) => handleNumberInputChange('anoRub', e.target.value, 0, 9999)} 
 
               />
-            }         
+            }   
+
+            <input 
+              className="text-sm w-27 h-8 mb-5 rounded-sm items-center justify-center text-gray-400 bg-gray-700 hover:bg-gray-600 text-center mr-2"
+              type="number"
+              name="assuntoCalculo"
+              placeholder="Assunto de calculo" 
+              value={userData.assuntoCalculo} 
+              onChange={(e) => handleNumberInputChange('assuntoCalculo', e.target.value, 0, 99)} 
+            />      
             <button
-              className="flex w-48 h-8 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" 
+              className="flex w-30 h-8 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" 
               type="submit"
             >
-                Adicionar Usuário
+                Adicionar
             </button>    
           </div> 
           <div className="text-white w-3/3 mb-3">
@@ -292,6 +302,7 @@ export default function FormInsert() {
             <th>Valor</th>
             <th>Prazo</th>
             <th>Retroativo</th>
+            <th>Assunto de Calculo</th>
            </tr>
           </thead>
           <tbody className="w-full h-full items-center justify-center">
@@ -307,6 +318,7 @@ export default function FormInsert() {
                   <td className="text-center font-medium text-gray-900 dark:text-white">{user.valor}</td>
                   <td className="text-center font-medium text-gray-900 dark:text-white">{user.prazo}</td>
                   <td className="text-center font-medium text-gray-900 dark:text-white">{user.mesRub}/{user.anoRub}</td>
+                  <td className="text-center font-medium text-gray-900 dark:text-white">{user.assuntoCalculo}</td>
               </tr>
             ))}
           </tbody>

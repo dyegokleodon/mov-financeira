@@ -3,13 +3,13 @@ export default function FormatMovFin(csvData, rubrica, mesPagto, anoPagto) {
   const dadosConc = csvData.map((item)=> {
     const valor = ('00000000000' + item.valor).slice(-11);
     const prazo = ('000' + item.prazo).slice(-3);
+    const AssuntoCalculoParam = ('00' + item.assuntoCalculo).slice(-2);
     const matriculaOrigem = ('00000000');
     const nomeBeneficiario = ('                                      ');
     const rubricaCalculo1 = ('00000');
     const rubricaCalculo2 = ('00000');    
     const rubricaCalculo3 = ('00000');
     const filler4 = ('    ');
-    const AssuntoCalculoParam = ('00');
     const fracaoNumerador = ('000');             
     const fracaoDenominador = ('000');
     const percentual = ('00000');
